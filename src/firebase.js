@@ -1,6 +1,7 @@
-const firebase = require("firebase/app");
+const firebase = require("firebase/app"); // 빈 객체
 require("firebase/firestore");
 
+//  fsConfig를 만들고 제이슨으로 만듬
 const fsConfig = {
   apiKey: "AIzaSyBfhVyBK2b521UjbbBfEqASPiIEUzpDZcE",
   authDomain: "file-memo-543ba.firebaseapp.com",
@@ -12,7 +13,7 @@ const fsConfig = {
   measurementId: "G-D9ST125Y2Q",
 };
 
-firebase.initializeApp(fsConfig);
+firebase.initializeApp(fsConfig); // 초기화 시킴 ( 초기화는 아예 삭제한다는 것이 아님 )
 
 const firestore = new firebase.firestore();
 
