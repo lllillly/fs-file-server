@@ -46,6 +46,40 @@ app.post("/api/test", async (req, res) => {
   return res.json(sendData);
 });
 
+app.post("/api/memoUploadHandler", async (req, res) => {
+  const {
+    body: {
+      params: { inputData },
+    },
+  } = req;
+
+  const D = new Date();
+
+  let year = D.getFullYear();
+  let month = D.getMonth() + 1;
+  let date = D.getDate();
+
+  month = month < 10 ? "0" + month : month;
+  date = date < 10 ? "0" + date : date;
+
+  const resultDate = year + month + date;
+  let resultCode = 0;
+
+  try {
+    await firestore.collection("Memo").add({
+      title: inputData.input_title,
+      content: inputData.input_desc,
+      regDate: resultDate,
+    });
+
+    resultCode = 1;
+  } catch (e) {
+    console.log(e);
+  }
+
+  return res.json(resultCode);
+});
+
 app.listen(PORT, () => {
   console.log(`✅  ${PORT} Server Start`);
 });
